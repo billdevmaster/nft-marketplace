@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Box, Flex, Modal, Button, Card, Heading} from 'rimble-ui';
 import {toast} from 'react-toastify';
 import {Col, FormGroup, Label, Spinner} from 'reactstrap';
+import restApi from '../../utils/restApi.js';
 
 import {
   getAuctionContractInstance,
@@ -41,8 +42,16 @@ const CollectionModal = ({isOpen, closeModal, myNft}) => {
           price
         )
         .send({from: userAddress});
-        setIsProcessing(false);
-        console.log("trasaction", tx)
+        restApi.post('/setNftSelling', {id: myNft.id})
+        .then(result => {
+          toast.success('Bid Successfully');
+          setIsProcessing(false);
+        })
+        .catch(err => {
+          toast.error(
+            'Somethings are wrong!'
+          );
+        })
       } catch(err) {
         console.log(err)
       }

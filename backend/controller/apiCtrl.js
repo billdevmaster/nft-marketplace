@@ -116,11 +116,19 @@ const getCategories = (req, res) => {
     })
 }
 
+const setNftSelling = async (req, res) => {
+    let item = await itemModel.findById(req.body.id);
+    item.status = 1;
+    item.save();
+    res.json("success");
+}
+
 module.exports = {
     saveCollection,
     collections,
     saveItem,
     viewItem,
     items,
-    getCategories
+    getCategories,
+    setNftSelling
 };
