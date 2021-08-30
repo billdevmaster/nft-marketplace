@@ -5,7 +5,8 @@ import {Col, FormGroup, Label, Spinner} from 'reactstrap';
 
 import {
   getAuctionContractInstance,
-  getDefaultAddres
+  getDefaultAddres,
+  getTokenContractInstance
 } from '../../utils/web3';
 import { AuctionAddress } from '../../constants';
 
@@ -30,8 +31,11 @@ const CollectionModal = ({isOpen, closeModal, myNft}) => {
       }
       try {
         const nftContract = getAuctionContractInstance(AuctionAddress);
+        const tokenContract = getTokenContractInstance();
         const userAddress = await getDefaultAddres();
-        console.log(userAddress)
+        await tokenContract.methods
+            .approve(AuctionAddress, myNft.tokenId)
+            .send({from: userAddress});
         const tx = await nftContract.methods
         .createOrder(
           myNft.collectionId,
