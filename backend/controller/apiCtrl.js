@@ -32,7 +32,7 @@ const items = async (req, res) => {
     let condition = {};
     let mysort = {};
     let sort = "";
-    if (req.query.owner != '') {
+    if (req.query.owner != undefined || req.query.owner != '') {
         query.owner = req.query.owner;
     }
     console.log(query)
