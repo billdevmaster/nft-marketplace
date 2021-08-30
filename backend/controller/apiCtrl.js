@@ -97,7 +97,7 @@ const viewItem = (req, res) => {
             updatedAt: result.updatedAt,
             creatorObj: creatorObj,
             ownerObj: ownerObj,
-            sellingStatus: sellingStatus,
+            sellingStatus: result.sellingStatus,
         };
         console.log(data)
         res.json({item: data});
