@@ -42,7 +42,7 @@ const CollectionModal = ({isOpen, closeModal, myNft}) => {
           price
         )
         .send({from: userAddress});
-        restApi.post('/setNftSelling', {id: myNft.id})
+        restApi.post('/setNftSelling', {id: myNft._id})
         .then(result => {
           toast.success('Bid Successfully');
           setIsProcessing(false);
