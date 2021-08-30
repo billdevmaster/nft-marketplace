@@ -9,7 +9,7 @@ const login = async ( req, res ) => {
     user.address = req.body.address;
     user.signature = req.body.signature;
     user.save();
-    res.json({token:'1234'});
+    res.json({token: req.body.signature});
 }
 
 const user = ( req, res ) => {

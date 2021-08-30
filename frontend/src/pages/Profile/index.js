@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import {Spinner} from 'reactstrap';
 import { login } from '../../actions/user';
 import spaceBack from '../../assets/img/spaceback.jpg';
+import restApi from '../../utils/restApi';
 
 const NftLists = React.lazy(() => import('./nftLists'));
 const Account = React.lazy(() => import('./account'));
@@ -25,14 +26,17 @@ const Profile = () => {
   useEffect(() => {
     async function loginUser(user, account) {
       console.log(user)
-      console.log(isMyAccount)
+      console.log(account)
       if(!user || !account) {
         return;
       }
       if(!isMyAccount || user.token) {
-        setLoginError(null);
-        setLoginLoading(false);
-        return;
+        const getuser = await restApi.get(`user/${account[0]}`);
+        if (getuser.signature === user.token) {
+          setLoginLoading(false);
+          setLoginError(null);
+          return;
+        }
       }
       if(user.loading) {
         setLoginLoading(user.loading);return;
