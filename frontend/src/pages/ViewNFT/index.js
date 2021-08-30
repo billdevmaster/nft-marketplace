@@ -337,9 +337,11 @@ const ViewNFT = () => {
         toast.error(
           'Somethings are wrong!'
         );
+        setIsProcessing(false);
       })
     } catch (err) {
       console.log(err)
+      setIsProcessing(false);
     }
   }
 
@@ -354,7 +356,7 @@ const ViewNFT = () => {
         myNft.collectionId,
         myNft.tokenId,
       )
-      .send({from: userAddress});
+      .send({from: userAddress, value: web3.utils.toWei(0.02, 'ether')});
       restApi.post('/setNftBuy', {id: myNft._id, buyer: userAddress, status: 0 })
       .then(result => {
         toast.success('Successfully Done');
@@ -364,9 +366,11 @@ const ViewNFT = () => {
         toast.error(
           'Somethings are wrong!'
         );
+        setIsProcessing(false);
       })
     } catch (err) {
       console.log(err)
+      setIsProcessing(false);
     }
   }
   return (
