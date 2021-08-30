@@ -32,10 +32,7 @@ const items = async (req, res) => {
     let condition = {};
     let mysort = {};
     let sort = "";
-    if (req.query.category && req.query.category != '') {
-        query = {category: req.query.category};
-    }
-    if (req.query.category && req.query.owner != '') {
+    if (req.query.owner != '') {
         query.owner = req.query.owner;
     }
     console.log(query)

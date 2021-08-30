@@ -32,8 +32,7 @@ const Profile = () => {
       }
       if(!isMyAccount || user.token) {
         const getuser = await restApi.get(`user/${account}`);
-        console.log(getuser)
-        if (getuser.user && getuser.user.signature === user.token) {
+        if (getuser.data.user && getuser.data.user.signature === user.token) {
           setLoginLoading(false);
           setLoginError(null);
           return;
