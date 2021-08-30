@@ -54,6 +54,8 @@ const ViewNFT = () => {
     bnb: price.bnb,
     moonstar: price.moonstar,
   });
+  const [isProcessing, setIsProcessing] = useState(false);
+
   useEffect(() => {
     setTokenPrice(price);
   }, [price]);
@@ -313,6 +315,60 @@ const ViewNFT = () => {
     }
     setUpdatePriceProcessing(false);
   };
+
+  const cancelAuction = async () =>{
+    setIsProcessing(true);
+    try {
+      const nftContract = getAuctionContractInstance(AuctionAddress);
+      const userAddress = await getDefaultAddres();
+      
+      const tx = await nftContract.methods
+      .cancelOrder(
+        myNft.collectionId,
+        myNft.tokenId,
+      )
+      .send({from: userAddress});
+      restApi.post('/setNftSelling', {id: myNft._id, sellingStatus: 0})
+      .then(result => {
+        toast.success('Successfully Done');
+        setIsProcessing(false);
+      })
+      .catch(err => {
+        toast.error(
+          'Somethings are wrong!'
+        );
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  const placeBid = async () => {
+    setIsProcessing(true);
+    try {
+      const nftContract = getAuctionContractInstance(AuctionAddress);
+      const userAddress = await getDefaultAddres();
+      
+      const tx = await nftContract.methods
+      .safePlaceBid(
+        myNft.collectionId,
+        myNft.tokenId,
+      )
+      .send({from: userAddress});
+      restApi.post('/setNftBuy', {id: myNft._id, buyer: userAddress, status: 0 })
+      .then(result => {
+        toast.success('Successfully Done');
+        setIsProcessing(false);
+      })
+      .catch(err => {
+        toast.error(
+          'Somethings are wrong!'
+        );
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
   return (
     <>
       {myNft.name ? (
@@ -407,7 +463,10 @@ const ViewNFT = () => {
                             {myNft.sellingStatus === undefined || myNft.sellingStatus === 0 ? (
                               <button className="btn btn-primary" style={{ width: '100px' }} onClick={e => setOpenSellModal(true)}>sell</button>
                             ) : (
-                              <button className="btn btn-warning" style={{ width: '100px' }} onClick={e => setOpenSellModal(true)}>Cancel</button>
+                              <button className="btn btn-warning" style={{ width: '100px' }} onClick={e => cancelAuction()}>
+                                {isProcessing ? <Spinner size="sm" /> : 'Cancel'}
+                                
+                              </button>
                             )}
                           </div>
                         ) : (
@@ -415,7 +474,10 @@ const ViewNFT = () => {
                           {myNft.sellingStatus === 1 ? (
                             <div style={{ width: '100%', justifyContent: 'flex-end', flexDirection: 'initial !important', display: 'flex' }}>
                               <button className="btn btn-success" style={{ width: '150px', marginRight: '10px' }}>buy now</button>
-                              <button className="btn btn-primary" style={{ width: '150px' }}>place bid</button>
+                              <button className="btn btn-primary" style={{ width: '150px' }} onClick={e => placeBid()}>
+                                {isProcessing ? <Spinner size="sm" /> : 'place bid'}
+                                
+                              </button>
                             </div>
                           ):''}
                         </>

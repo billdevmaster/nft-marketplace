@@ -2,6 +2,7 @@ const Category = require("../models/categoryModel");
 const collectionModel = require("../models/collectionModel");
 const itemModel = require("../models/itemModel");
 const User = require("../models/usersModel");
+const ItemBuy = require("../models/itemBuyModel");
 
 
 const saveCollection = (req, res) => {
@@ -119,8 +120,17 @@ const getCategories = (req, res) => {
 
 const setNftSelling = async (req, res) => {
     let item = await itemModel.findById(req.body.id);
-    item.sellingStatus = 1;
+    item.sellingStatus = req.body.sellingStatus;
     item.save();
+    res.json("success");
+}
+
+const setNftBuy = async (req, res) => {
+    let itemBuy = await new ItemBuy();
+    itemBuy.itemId = req.body.id;
+    itemBuy.buyer = req.body.buyer;
+    itemBuy.status = req.body.status;
+    itemBuy.save();
     res.json("success");
 }
 
@@ -131,5 +141,6 @@ module.exports = {
     viewItem,
     items,
     getCategories,
-    setNftSelling
+    setNftSelling,
+    setNftBuy
 };

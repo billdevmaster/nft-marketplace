@@ -18,5 +18,6 @@ router.get("/categories", apiCtrl.getCategories);
 
 // marketplace
 router.post("/setNftSelling", apiCtrl.setNftSelling);
+router.post("/setNftBuy", apiCtrl.setNftBuy);
 
 module.exports = router;

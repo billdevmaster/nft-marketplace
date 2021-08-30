@@ -7,7 +7,6 @@ import restApi from '../../utils/restApi.js';
 import {
   getAuctionContractInstance,
   getDefaultAddres,
-  getTokenContractInstance
 } from '../../utils/web3';
 import { AuctionAddress } from '../../constants';
 
@@ -25,14 +24,8 @@ const CollectionModal = ({isOpen, closeModal, myNft}) => {
   const createSellOrder = async () => {
     setIsProcessing(true);
     if (!isAuction) {
-      let data = {
-        collectionId: myNft.collectionId,
-        tokenId: myNft.tokenId,
-        price: price,
-      }
       try {
         const nftContract = getAuctionContractInstance(AuctionAddress);
-        const tokenContract = getTokenContractInstance();
         const userAddress = await getDefaultAddres();
         
         const tx = await nftContract.methods
@@ -42,9 +35,9 @@ const CollectionModal = ({isOpen, closeModal, myNft}) => {
           price
         )
         .send({from: userAddress});
-        restApi.post('/setNftSelling', {id: myNft._id})
+        restApi.post('/setNftSelling', {id: myNft._id, sellingStatus: 1})
         .then(result => {
-          toast.success('Bid Successfully');
+          toast.success('Successfully Done');
           setIsProcessing(false);
           closeModal()
         })
