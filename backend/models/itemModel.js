@@ -54,6 +54,9 @@ const ItemSchema = mongoose.Schema({
     },
     views: {
         type: Number
+    },
+    sellingStatus: {
+        type: Number
     }
 },
 {

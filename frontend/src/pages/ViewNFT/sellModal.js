@@ -46,6 +46,7 @@ const CollectionModal = ({isOpen, closeModal, myNft}) => {
         .then(result => {
           toast.success('Bid Successfully');
           setIsProcessing(false);
+          closeModal()
         })
         .catch(err => {
           toast.error(
