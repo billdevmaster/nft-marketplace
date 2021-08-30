@@ -1,5 +1,10 @@
 [
 	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -63,11 +68,6 @@
 				"internalType": "string",
 				"name": "uri",
 				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "isPrivate",
-				"type": "bool"
 			}
 		],
 		"name": "createRegistry",
@@ -79,24 +79,6 @@
 			}
 		],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [],
-		"name": "getlastAddress",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -146,6 +128,19 @@
 			}
 		],
 		"name": "getRegistryAddressFromUri",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getlastAddress",
 		"outputs": [
 			{
 				"internalType": "address",

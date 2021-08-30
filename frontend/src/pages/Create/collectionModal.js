@@ -61,7 +61,6 @@ const CollectionModal = ({isOpen, closeModal}) => {
           collection_symbol,
           collection_desc,
           '',
-          true
         )
         .send({from: userAddress});
     
