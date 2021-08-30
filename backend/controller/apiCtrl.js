@@ -13,7 +13,6 @@ const saveCollection = (req, res) => {
 }
 
 const collections = async ( req, res ) => {
-    console.log("test");return;
     const address = req.body.account;
     let query = {};
     if (address != undefined) {
