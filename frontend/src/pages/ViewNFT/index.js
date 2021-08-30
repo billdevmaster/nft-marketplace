@@ -350,6 +350,7 @@ const ViewNFT = () => {
     try {
       const nftContract = getAuctionContractInstance(AuctionAddress);
       const userAddress = await getDefaultAddres();
+      const { ethereum } = window;
       const web3 = new Web3(ethereum);
       const tx = await nftContract.methods
       .safePlaceBid(
