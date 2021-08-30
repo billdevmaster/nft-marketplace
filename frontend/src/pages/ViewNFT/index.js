@@ -412,12 +412,12 @@ const ViewNFT = () => {
                           </div>
                         ) : (
                           <>
-                          <div style={{ width: '100%', justifyContent: 'flex-end', flexDirection: 'initial !important', display: 'flex' }}>
-                            <button className="btn btn-success" style={{ width: '100px' }}>buy now</button>
-                          </div>
-                          <div style={{ width: '100%', justifyContent: 'flex-end', flexDirection: 'initial !important', display: 'flex' }}>
-                          <button className="btn btn-primary" style={{ width: '100px' }}>place bid</button>
-                        </div>
+                          {myNft.sellingStatus === 1 ? (
+                            <div style={{ width: '100%', justifyContent: 'flex-end', flexDirection: 'initial !important', display: 'flex' }}>
+                              <button className="btn btn-success" style={{ width: '150px', marginRight: '10px' }}>buy now</button>
+                              <button className="btn btn-primary" style={{ width: '150px' }}>place bid</button>
+                            </div>
+                          ):''}
                         </>
                         )}
                       </div>
