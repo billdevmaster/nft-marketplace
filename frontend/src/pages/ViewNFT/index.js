@@ -347,10 +347,10 @@ const ViewNFT = () => {
 
   const placeBid = async () => {
     setIsProcessing(true);
-    console.log(web3.utils.toWei(0.02, 'ether'))
     try {
       const nftContract = getAuctionContractInstance(AuctionAddress);
       const userAddress = await getDefaultAddres();
+      const web3 = new Web3(ethereum);
       const tx = await nftContract.methods
       .safePlaceBid(
         myNft.collectionId,
