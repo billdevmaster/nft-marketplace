@@ -33,9 +33,7 @@ const CollectionModal = ({isOpen, closeModal, myNft}) => {
         const nftContract = getAuctionContractInstance(AuctionAddress);
         const tokenContract = getTokenContractInstance();
         const userAddress = await getDefaultAddres();
-        await tokenContract.methods
-            .approve(AuctionAddress, myNft.tokenId)
-            .send({from: userAddress});
+        
         const tx = await nftContract.methods
         .createOrder(
           myNft.collectionId,

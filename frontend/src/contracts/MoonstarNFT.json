@@ -391,6 +391,19 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "marketAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -524,6 +537,19 @@
 			}
 		],
 		"name": "setApprovalForAll",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_market",
+				"type": "address"
+			}
+		],
+		"name": "setMarketAddress",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

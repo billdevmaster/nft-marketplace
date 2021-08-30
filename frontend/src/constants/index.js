@@ -1,6 +1,6 @@
 export const TokenAddress = '0x4AD910956D7E08cC9b2BB0e991c9998ee86DDB8d';
-export const FactoryAddress = '0xADd68E800ddd4f512B7502B2b47301cd41bD0958';
-export const AuctionAddress = '0xB1103d2FadC7496E17189bc09C4c8bb119fb3243';
+export const FactoryAddress = '0xa622BBa6700C063168feada0F5fba64BdEe0F876';
+export const AuctionAddress = '0x5702D005124b0EeF673202fd5d18ed7a012172e7';
 export const AuctionBNBAddress = '0x0A269272686D566Ca55D0BF88aBf0f3D4422f730';
 
 export const NFTStorageKey =
